@@ -1125,6 +1125,8 @@ stream {
 
             header_filter_by_lua_file /etc/nginx/lua/nginx/ngx_conf_srv_hdr_filter.lua;
 
+            body_filter_by_lua_file /etc/nginx/lua/nginx/ngx_conf_srv_body_filter.lua;
+
             log_by_lua_file /etc/nginx/lua/nginx/ngx_conf_log_block.lua;
 
             {{ if not $location.Logs.Access }}

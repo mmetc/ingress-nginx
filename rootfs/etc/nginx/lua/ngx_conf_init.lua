@@ -51,3 +51,12 @@ else
     certificate.is_ocsp_stapling_enabled = configfile.enable_ocsp
   end
 end
+
+ok, res = pcall(require, "plugins")
+if not ok then
+  error("require failed: " .. tostring(res))
+else
+  plugins = res
+end
+-- load all plugins that'll be used here
+plugins.init({ {{ range  $idx, $plugin := $cfg.Plugins }}{{ if $idx }},{{ end }}{{ $plugin | quote }}{{ end }} })
