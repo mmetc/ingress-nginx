@@ -13,3 +13,5 @@ balancer.init_worker()
 if configfile.enable_metrics and configfile.monitor_batch_max_size then
   monitor.init_worker(configfile.monitor_batch_max_size)
 end
+
+plugins.run()

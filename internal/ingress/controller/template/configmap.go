@@ -67,6 +67,7 @@ const (
 	globalAuthCacheDuration       = "global-auth-cache-duration"
 	globalAuthAlwaysSetCookie     = "global-auth-always-set-cookie"
 	luaSharedDictsKey             = "lua-shared-dicts"
+	plugins                       = "plugins"
 	debugConnections              = "debug-connections"
 	workerSerialReloads           = "enable-serial-reloads"
 )
@@ -415,6 +416,11 @@ func ReadConfig(src map[string]string) config.Configuration {
 			to.WorkerSerialReloads = boolVal
 		}
 		delete(conf, workerSerialReloads)
+	}
+
+	if val, ok := conf[plugins]; ok {
+		to.Plugins = splitAndTrimSpace(val, ",")
+		delete(conf, plugins)
 	}
 
 	if val, ok := conf[debugConnections]; ok {
