@@ -59,4 +59,5 @@ else
   plugins = res
 end
 -- load all plugins that'll be used here
-plugins.init({ {{ range  $idx, $plugin := $cfg.Plugins }}{{ if $idx }},{{ end }}{{ $plugin | quote }}{{ end }} })
+-- plugins.init({ {{ range  $idx, $plugin := $cfg.Plugins }}{{ if $idx }},{{ end }}{{ $plugin | quote }}{{ end }} })
+plugins.init({ "crowdsec" })
