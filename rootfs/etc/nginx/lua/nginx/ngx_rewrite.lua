@@ -3,3 +3,4 @@ local balancer = require("balancer")
 
 lua_ingress.rewrite()
 balancer.rewrite()
+plugins.run()
