@@ -70,7 +70,10 @@ http {
 
     lua_shared_dict luaconfig 5m;
 
-    init_by_lua_file /etc/nginx/lua/ngx_conf_init.lua;
+    init_by_lua_block {
+      plugin_list = { {{ range  $idx, $plugin := $cfg.Plugins }}{{ if $idx }},{{ end }}{{ $plugin | quote }}{{ end }} }
+      dofile("/etc/nginx/lua/ngx_conf_init.lua")
+    }
 
     init_worker_by_lua_file /etc/nginx/lua/ngx_conf_init_worker.lua;
 
